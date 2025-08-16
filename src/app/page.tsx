@@ -33,7 +33,7 @@ export default async function Home() {
           </p>
           <div className="mt-8">
             <Button size="lg" asChild>
-                <Link href="/api/auth/signin">
+                <Link href="/dashboard">
                     Get Started for Free
                     <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
