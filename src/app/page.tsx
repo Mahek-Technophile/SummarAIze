@@ -16,8 +16,8 @@ export default async function Home() {
     <div className="flex flex-col min-h-screen">
       <header className="p-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
-            <BrainCircuit className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold text-primary">summarAIze</h1>
+            <BrainCircuit className="h-8 w-8 text-foreground" />
+            <h1 className="text-2xl font-bold text-foreground">summarAIze</h1>
         </div>
         <Button asChild>
           <Link href="/dashboard">Login <ArrowRight className="ml-2 h-4 w-4" /></Link>

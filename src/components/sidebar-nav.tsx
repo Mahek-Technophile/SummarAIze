@@ -29,8 +29,8 @@ export function SidebarNav() {
     <Sidebar>
       <SidebarHeader>
         <div className="flex items-center gap-2">
-          <BrainCircuit className="size-8 text-primary" />
-          <span className="text-xl font-semibold text-primary">summarAIze</span>
+          <BrainCircuit className="size-8 text-foreground" />
+          <span className="text-xl font-semibold text-foreground">summarAIze</span>
         </div>
       </SidebarHeader>
       <SidebarContent>
