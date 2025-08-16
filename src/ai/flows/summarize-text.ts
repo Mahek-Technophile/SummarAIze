@@ -80,15 +80,9 @@ const summarizeTextFlow = ai.defineFlow(
     try {
       console.log('Attempting to generate summary with Gemini');
       const gemini = googleAI().model('gemini-1.5-pro');
-      const result = await gemini.generate({
-        body: {
-          contents: messages.map(msg => ({
-            role: msg.role === 'assistant' ? 'model' : msg.role,
-            parts: [{text: msg.content}],
-          })),
-        },
+      const {text: summary} = await gemini.generate({
+        prompt: systemPrompt,
       });
-      const summary = result.candidates[0]?.content?.parts[0]?.text ?? '';
       if (summary) {
         console.log('Successfully generated summary with Gemini');
         return summary;
