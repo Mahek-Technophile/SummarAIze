@@ -9,6 +9,12 @@ import { Button } from '@/components/ui/button';
 import { summarizeText, type SummarizeTextOutput } from '@/ai/flows/summarize-text';
 import { Loader2, Sparkles, Clipboard } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 export default function SummarizePage() {
   const [text, setText] = useState('');
@@ -113,12 +119,21 @@ export default function SummarizePage() {
               </div>
             )}
             {result && (
-              <div className="relative group">
-                <Button variant="ghost" size="icon" className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity" onClick={handleCopy}>
-                  <Clipboard className="h-4 w-4"/>
-                </Button>
-                <p className="text-sm whitespace-pre-wrap">{result.summary}</p>
-              </div>
+              <Accordion type="single" collapsible defaultValue="summary">
+                <AccordionItem value="summary" className="border-b-0">
+                  <div className="flex justify-between items-center">
+                    <AccordionTrigger className="flex-1">
+                      View Summary
+                    </AccordionTrigger>
+                    <Button variant="ghost" size="icon" className="ml-2" onClick={handleCopy}>
+                      <Clipboard className="h-4 w-4" />
+                    </Button>
+                  </div>
+                  <AccordionContent>
+                    <p className="text-sm whitespace-pre-wrap">{result.summary}</p>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             )}
           </CardContent>
         </Card>
