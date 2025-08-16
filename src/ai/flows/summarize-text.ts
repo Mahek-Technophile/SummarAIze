@@ -9,6 +9,7 @@
  */
 
 import {ai} from '@/ai/genkit';
+import {generate} from 'genkit';
 import {z} from 'genkit';
 
 const SummarizeTextInputSchema = z.object({
@@ -26,12 +27,7 @@ export async function summarizeText(input: SummarizeTextInput): Promise<Summariz
   return summarizeTextFlow(input);
 }
 
-const prompt = ai.definePrompt({
-  name: 'summarizeTextPrompt',
-  input: {schema: SummarizeTextInputSchema},
-  output: {schema: SummarizeTextOutputSchema},
-  prompt: `You are a chatbot summarizing text. Create a slightly detailed and conversational summary of the following text, guided by the prompt.\n\nPrompt: {{{prompt}}}\n\nText: {{{text}}}`,
-});
+const prompt = `You are a chatbot summarizing text. Create a slightly detailed and conversational summary of the following text, guided by the prompt.\n\nPrompt: {{{prompt}}}\n\nText: {{{text}}}`;
 
 const summarizeTextFlow = ai.defineFlow(
   {
@@ -40,7 +36,28 @@ const summarizeTextFlow = ai.defineFlow(
     outputSchema: SummarizeTextOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    const models = ['groq/gemma-7b-it', 'openai/gpt-4', 'googleai/gemini-1.5-flash'];
+    
+    for (const model of models) {
+      try {
+        console.log(`Attempting to generate summary with ${model}`);
+        const {output} = await generate({
+          model: model,
+          prompt: prompt,
+          input: input,
+          output: {
+            schema: SummarizeTextOutputSchema,
+          },
+        });
+        console.log(`Successfully generated summary with ${model}`);
+        return output!;
+      } catch (error) {
+        console.error(`Failed to generate summary with ${model}:`, error);
+        // Try the next model
+      }
+    }
+
+    // If all models fail
+    throw new Error('All AI models failed to generate a summary.');
   }
 );
