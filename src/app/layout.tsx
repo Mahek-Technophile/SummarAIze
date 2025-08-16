@@ -8,7 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'SummarIQ',
+  title: 'summarAIze',
   description: 'Intelligent summarization and document analysis.',
 };
 

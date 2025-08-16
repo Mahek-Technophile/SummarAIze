@@ -17,10 +17,10 @@ export default async function Home() {
       <header className="p-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
             <BrainCircuit className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold text-primary">SummarIQ</h1>
+            <h1 className="text-2xl font-bold text-primary">summarAIze</h1>
         </div>
         <Button asChild>
-          <Link href="/api/auth/signin">Login <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          <Link href="/dashboard">Login <ArrowRight className="ml-2 h-4 w-4" /></Link>
         </Button>
       </header>
       <main className="flex-1 flex flex-col items-center justify-center text-center p-4">
@@ -29,7 +29,7 @@ export default async function Home() {
             Unlock Insights from Your Documents
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            SummarIQ is an intelligent platform that helps you summarize text, optimize transcripts, and chat with your documents to find the answers you need, instantly.
+            summarAIze is an intelligent platform that helps you summarize text, optimize transcripts, and chat with your documents to find the answers you need, instantly.
           </p>
           <div className="mt-8">
             <Button size="lg" asChild>
@@ -60,7 +60,7 @@ export default async function Home() {
         </div>
       </main>
       <footer className="p-4 text-center text-muted-foreground">
-        <p>&copy; {new Date().getFullYear()} SummarIQ. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} summarAIze. All rights reserved.</p>
       </footer>
     </div>
   )
